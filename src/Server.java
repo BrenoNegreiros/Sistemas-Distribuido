@@ -41,7 +41,7 @@ public class Server extends JFrame {
 
 	public Server() {
 		initComponents();
-		setVisible(true);
+		setVisible(false);
 		try {
 			server = new ServerSocket(5000);
 			while (t) {
@@ -255,7 +255,8 @@ public class Server extends JFrame {
 
         pack();
 	}
-
+//aonde vou distibuir informacoes
+	
 	private void mandarTodos(String text) {
 		for (PrintWriter w : lpw) {
 			try {
@@ -297,8 +298,10 @@ public class Server extends JFrame {
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
 
-					jTextField1.setText(qtMemoria + "");
-					jTextField2.setText(qtProcessador + "");
+					jTextField3.setText(qtMemoria + "");
+					jTextField4.setText(qtProcessador + "");
+					
+					mandarTodos(text);
 
 				}
 			} catch (Exception e) {
