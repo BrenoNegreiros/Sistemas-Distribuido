@@ -29,8 +29,8 @@ public class Server extends JFrame {
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JTextField jTextField1;
 	private javax.swing.JTextField jTextField2;
-	private javax.swing.JTextField jTextField3;
-	private javax.swing.JTextField jTextField4;
+	private javax.swing.JTextField totalMemoria;
+	private javax.swing.JTextField totalProcessador;
 	private javax.swing.JTextField jTextField5;
 	private javax.swing.JTextField jTextField6;
 	private javax.swing.JTextField jTextField7;
@@ -65,8 +65,8 @@ public class Server extends JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        totalMemoria = new javax.swing.JTextField();
+        totalProcessador = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
@@ -148,8 +148,8 @@ public class Server extends JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addComponent(totalMemoria)
+                    .addComponent(totalProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -158,11 +158,11 @@ public class Server extends JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
 
@@ -298,8 +298,8 @@ public class Server extends JFrame {
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
 
-					jTextField3.setText(qtMemoria + "");
-					jTextField4.setText(qtProcessador + "");
+					totalMemoria.setText(qtMemoria + "");
+					totalProcessador.setText(qtProcessador + "");
 					
 					mandarTodos(text);
 

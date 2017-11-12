@@ -36,14 +36,14 @@ public class Cliente extends JFrame {
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
-	private javax.swing.JTextField jTextField1;
-	private javax.swing.JTextField jTextField2;
-	private javax.swing.JTextField jTextField3;
-	private javax.swing.JTextField jTextField4;
-	private javax.swing.JTextField jTextField5;
-	private javax.swing.JTextField jTextField6;
-	private javax.swing.JTextField jTextField7;
-	private javax.swing.JTextField jTextField8;
+	private javax.swing.JTextField quantidadeMemoria;
+	private javax.swing.JTextField quantidadeProcessador;
+	private javax.swing.JTextField totalMemoria;
+	private javax.swing.JTextField totalProcessador;
+	private javax.swing.JTextField bloqueadosCPU;
+	private javax.swing.JTextField bloqueadosMemoria;
+	private javax.swing.JTextField recebidosCPU;
+	private javax.swing.JTextField recebidosMemoria;
 	ArrayList<String> lista = new ArrayList<>();
 	private int qtProcessador;
 	private int qtMemoria;
@@ -69,8 +69,8 @@ public class Cliente extends JFrame {
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
 
-					jTextField3.setText(qtMemoria + "");
-					jTextField4.setText(qtProcessador + "");
+					totalMemoria.setText(qtMemoria + "");
+					totalProcessador.setText(qtProcessador + "");
 
 				}
 
@@ -92,10 +92,10 @@ public class Cliente extends JFrame {
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				if (jTextField1.getText().equals("") && jTextField2.getText().equals("")) {
+				if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText().equals("")) {
 					System.exit(1);
 				}
-				pw.println(nome + " " + "-" + jTextField1.getText() + " " + "-" + jTextField2.getText());
+				pw.println(nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" + quantidadeProcessador.getText());
 
 				pw.flush();
 
@@ -134,16 +134,16 @@ public class Cliente extends JFrame {
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
-		pw.println(nome + " " + jTextField1.getText() + " " + jTextField2.getText());
-
+		pw.println(nome + " " + quantidadeMemoria.getText() + " " + quantidadeProcessador.getText());
+System.out.println(quantidadeMemoria.getText());
 		pw.flush();
 
-		jTextField1.setEnabled(false);
-		jTextField2.setEnabled(false);
+		quantidadeMemoria.setEnabled(false);
+		quantidadeProcessador.setEnabled(false);
 
-		jTextField1.requestFocus();
+		quantidadeMemoria.requestFocus();
 
-		jTextField2.requestFocus();
+		quantidadeProcessador.requestFocus();
 
 	}
 
@@ -158,14 +158,14 @@ public class Cliente extends JFrame {
 
 	// private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
 	// try {
-	// if (jTextField1.getText().equals("") && jTextField2.getText().equals("")) {
+	// if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText().equals("")) {
 	// s.close();
 	// System.exit(1);
 	//
 	// } else {
 	//
-	// pw.println(nome + " " + "-" + jTextField1.getText() + " " + "-" +
-	// jTextField2.getText());
+	// pw.println(nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" +
+	// quantidadeProcessador.getText());
 	//
 	// pw.flush();
 	//
@@ -182,25 +182,25 @@ public class Cliente extends JFrame {
 
 		jPanel1 = new javax.swing.JPanel();
 		jLabel5 = new javax.swing.JLabel();
-		jTextField5 = new javax.swing.JTextField();
+		bloqueadosCPU = new javax.swing.JTextField();
 		jLabel6 = new javax.swing.JLabel();
-		jTextField6 = new javax.swing.JTextField();
+		bloqueadosMemoria = new javax.swing.JTextField();
 		jButton2 = new javax.swing.JButton();
 		jPanel3 = new javax.swing.JPanel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
-		jTextField3 = new javax.swing.JTextField();
-		jTextField4 = new javax.swing.JTextField();
+		totalMemoria = new javax.swing.JTextField();
+		totalProcessador = new javax.swing.JTextField();
 		jPanel2 = new javax.swing.JPanel();
-		jTextField7 = new javax.swing.JTextField();
-		jTextField8 = new javax.swing.JTextField();
+		recebidosCPU = new javax.swing.JTextField();
+		recebidosMemoria = new javax.swing.JTextField();
 		jLabel9 = new javax.swing.JLabel();
 		jLabel10 = new javax.swing.JLabel();
 		jPanel4 = new javax.swing.JPanel();
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
-		jTextField1 = new javax.swing.JTextField();
-		jTextField2 = new javax.swing.JTextField();
+		quantidadeMemoria = new javax.swing.JTextField();
+		quantidadeProcessador = new javax.swing.JTextField();
 		jButton1 = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -230,12 +230,12 @@ public class Cliente extends JFrame {
 								.addGroup(jPanel1Layout.createSequentialGroup().addGap(53, 53, 53)
 										.addGroup(jPanel1Layout
 												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-												.addComponent(jTextField5).addComponent(jLabel5,
+												.addComponent(bloqueadosCPU).addComponent(jLabel5,
 														javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
 										.addGap(18, 18, 18)
 										.addGroup(jPanel1Layout
 												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 65,
+												.addComponent(bloqueadosMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 65,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
 												.addComponent(jLabel6)))
 								.addGroup(jPanel1Layout.createSequentialGroup().addGap(81, 81, 81)
@@ -250,9 +250,9 @@ public class Cliente extends JFrame {
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(
 								jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-										.addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 31,
+										.addComponent(bloqueadosCPU, javax.swing.GroupLayout.DEFAULT_SIZE, 31,
 												Short.MAX_VALUE)
-										.addComponent(jTextField6))
+										.addComponent(bloqueadosMemoria))
 						.addGap(40, 40, 40).addComponent(jButton2).addContainerGap(58, Short.MAX_VALUE)));
 
 		getContentPane().add(jPanel1);
@@ -271,17 +271,17 @@ public class Cliente extends JFrame {
 								.addComponent(jLabel3).addComponent(jLabel4))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(jTextField3)
-								.addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+								.addComponent(totalMemoria)
+								.addComponent(totalProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
 						.addContainerGap(120, Short.MAX_VALUE)));
 		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel3Layout.createSequentialGroup().addGap(52, 52, 52)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jLabel3).addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel3).addComponent(totalMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(37, 37, 37)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel4).addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel4).addComponent(totalProcessador, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(111, Short.MAX_VALUE)));
 
@@ -300,12 +300,12 @@ public class Cliente extends JFrame {
 		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel2Layout.createSequentialGroup().addGap(42, 42, 42)
 						.addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 72,
+								.addComponent(recebidosCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 72,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addComponent(jLabel9))
 						.addGap(41, 41, 41)
 						.addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jLabel10).addComponent(jTextField8,
+								.addComponent(jLabel10).addComponent(recebidosMemoria,
 										javax.swing.GroupLayout.PREFERRED_SIZE, 71,
 										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(109, Short.MAX_VALUE)));
@@ -315,8 +315,8 @@ public class Cliente extends JFrame {
 								.addComponent(jLabel9).addComponent(jLabel10))
 						.addGap(18, 18, 18)
 						.addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-								.addComponent(jTextField8))
+								.addComponent(recebidosCPU, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+								.addComponent(recebidosMemoria))
 						.addContainerGap(81, Short.MAX_VALUE)));
 
 		getContentPane().add(jPanel2);
@@ -340,18 +340,18 @@ public class Cliente extends JFrame {
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 								.addGroup(jPanel4Layout
 										.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-										.addComponent(jTextField1).addComponent(jTextField2,
+										.addComponent(quantidadeMemoria).addComponent(quantidadeProcessador,
 												javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
 						.addGroup(jPanel4Layout.createSequentialGroup().addGap(113, 113, 113).addComponent(jButton1)))
 						.addContainerGap(128, Short.MAX_VALUE)));
 		jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel4Layout.createSequentialGroup().addGap(61, 61, 61)
 						.addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel1).addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel1).addComponent(quantidadeMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(34, 34, 34)
 						.addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel2).addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel2).addComponent(quantidadeProcessador, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(38, 38, 38).addComponent(jButton1).addContainerGap(44, Short.MAX_VALUE)));
 
@@ -363,13 +363,13 @@ public class Cliente extends JFrame {
 		 * 
 		 * jLabel1 = new javax.swing.JLabel();
 		 * 
-		 * jTextField1 = new javax.swing.JTextField();
+		 * quantidadeMemoria = new javax.swing.JTextField();
 		 * 
 		 * jLabel2 = new javax.swing.JLabel();
 		 * 
 		 * jButton1 = new javax.swing.JButton();
 		 * 
-		 * jTextField2 = new javax.swing.JTextField();
+		 * quantidadeProcessador = new javax.swing.JTextField();
 		 * 
 		 * jButton2 = new javax.swing.JButton();
 		 * 
@@ -429,11 +429,11 @@ public class Cliente extends JFrame {
 		 * .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment
 		 * .LEADING)
 		 * 
-		 * .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 84,
+		 * .addComponent(quantidadeProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 84,
 		 * 
 		 * javax.swing.GroupLayout.PREFERRED_SIZE)
 		 * 
-		 * .addComponent(jTextField1))))
+		 * .addComponent(quantidadeMemoria))))
 		 * 
 		 * .addContainerGap(46, Short.MAX_VALUE))
 		 * 
@@ -459,7 +459,7 @@ public class Cliente extends JFrame {
 		 * .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment
 		 * .BASELINE)
 		 * 
-		 * .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+		 * .addComponent(quantidadeMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
 		 * 
 		 * javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 		 * 
@@ -470,7 +470,7 @@ public class Cliente extends JFrame {
 		 * .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment
 		 * .BASELINE)
 		 * 
-		 * .addComponent(jLabel2).addComponent(jTextField2,
+		 * .addComponent(jLabel2).addComponent(quantidadeProcessador,
 		 * javax.swing.GroupLayout.PREFERRED_SIZE,
 		 * 
 		 * javax.swing.GroupLayout.DEFAULT_SIZE,
