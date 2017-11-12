@@ -203,6 +203,9 @@ public class Cliente extends JFrame {
 				quantidadeProcessador.setText(quantidadeCpu-bloqueadoProcessador+"");
 				quantidadeMemoria.setText(quantidadeMemo-bloqueadoMemoria+"");
 				
+				pw.println(nome + " " + "-" + bloqueadosMemoria.getText() + " " + "-" + bloqueadosCPU.getText());
+
+				pw.flush();
 				
 				
 				
