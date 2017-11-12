@@ -190,6 +190,22 @@ public class Cliente extends JFrame {
 		jButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("entrou");
+				int bloqueadoMemoria;
+				int bloqueadoProcessador;
+				int quantidadeMemo;
+				int quantidadeCpu;
+				
+				bloqueadoMemoria = Integer.parseInt(bloqueadosMemoria.getText());
+				bloqueadoProcessador = Integer.parseInt(bloqueadosCPU.getText());
+				quantidadeMemo = Integer.parseInt(quantidadeMemoria.getText());
+				quantidadeCpu = Integer.parseInt(quantidadeProcessador.getText());
+				
+				quantidadeProcessador.setText(quantidadeCpu-bloqueadoProcessador+"");
+				quantidadeMemoria.setText(quantidadeMemo-bloqueadoMemoria+"");
+				
+				
+				
+				
 			}
 		});
 	
