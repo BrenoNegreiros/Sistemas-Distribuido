@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cliente extends JFrame {
 
@@ -86,7 +88,7 @@ public class Cliente extends JFrame {
 
 	public Cliente(String nome) {
 
-		super("chat : " + nome);
+		super("Sistemas Distribuido : " + nome);
 
 		this.nome = nome;
 
@@ -135,7 +137,6 @@ public class Cliente extends JFrame {
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 
 		pw.println(nome + " " + quantidadeMemoria.getText() + " " + quantidadeProcessador.getText());
-System.out.println(quantidadeMemoria.getText());
 		pw.flush();
 
 		quantidadeMemoria.setEnabled(false);
@@ -186,6 +187,13 @@ System.out.println(quantidadeMemoria.getText());
 		jLabel6 = new javax.swing.JLabel();
 		bloqueadosMemoria = new javax.swing.JTextField();
 		jButton2 = new javax.swing.JButton();
+		jButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("entrou");
+			}
+		});
+	
+		
 		jPanel3 = new javax.swing.JPanel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
@@ -216,6 +224,8 @@ System.out.println(quantidadeMemoria.getText());
 		jLabel6.setText("Memoria");
 
 		jButton2.setText("Bloquear");
+		
+		
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
