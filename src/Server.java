@@ -341,13 +341,13 @@ public class Server extends JFrame {
 	//
 	//
 	// }
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-
-	}
-	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-
-		
-	}
+//	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+//
+//	}
+//	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+//
+//		
+//	}
 
 	public static void main(String[] args) {
 		Server s = new Server();

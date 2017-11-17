@@ -62,17 +62,19 @@ public class Cliente extends JFrame {
 				String text;
 
 				while ((text = scan.nextLine()) != null) {
-
+					int aux= qtMemoria,aux2=qtProcessador;
 					System.out.println(text);
-					
 					
 					String[] msgPartida = text.split(" ");
 					lista.add(text);
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
-
-					totalMemoria.setText(qtMemoria + "");
-					totalProcessador.setText(qtProcessador + "");
+					if(aux<qtMemoria && aux2<qtProcessador) {
+						totalMemoria.setText(qtMemoria + "");
+						totalProcessador.setText(qtProcessador + "");	
+					}
+					
+					
 
 				}
 
@@ -97,7 +99,8 @@ public class Cliente extends JFrame {
 				if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText().equals("")) {
 					System.exit(1);
 				}
-				pw.println(nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" + quantidadeProcessador.getText());
+				pw.println(
+						nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" + quantidadeProcessador.getText());
 
 				pw.flush();
 
@@ -150,35 +153,32 @@ public class Cliente extends JFrame {
 
 	/*
 	 * 
-	 * FAZ AQUI EM
-	 * 
-	 * BAIXO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * Bloquear Action em baixo!!!!!!!!!!!!!!!!!!!!
 	 * 
 	 * !!!!
 	 */
 
-	// private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-	// try {
-	// if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText().equals("")) {
-	// s.close();
-	// System.exit(1);
-	//
-	// } else {
-	//
-	// pw.println(nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" +
-	// quantidadeProcessador.getText());
-	//
-	// pw.flush();
-	//
-	// s.close();
-	// System.exit(1);
-	//
-	// }
-	// } catch (IOException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+		System.out.println("entrou");
+		int bloqueadoMemoria;
+		int bloqueadoProcessador;
+		int quantidadeMemo;
+		int quantidadeCpu;
+
+		bloqueadoMemoria = Integer.parseInt(bloqueadosMemoria.getText());
+		bloqueadoProcessador = Integer.parseInt(bloqueadosCPU.getText());
+		quantidadeMemo = Integer.parseInt(quantidadeMemoria.getText());
+		quantidadeCpu = Integer.parseInt(quantidadeProcessador.getText());
+
+		quantidadeProcessador.setText(quantidadeCpu - bloqueadoProcessador + "");
+		quantidadeMemoria.setText(quantidadeMemo - bloqueadoMemoria + "");
+
+		pw.println(nome + " " + "-" + bloqueadosMemoria.getText() + " " + "-" + bloqueadosCPU.getText());
+
+		pw.flush();
+
+	}
+
 	private void initComponents() {
 
 		jPanel1 = new javax.swing.JPanel();
@@ -187,32 +187,7 @@ public class Cliente extends JFrame {
 		jLabel6 = new javax.swing.JLabel();
 		bloqueadosMemoria = new javax.swing.JTextField();
 		jButton2 = new javax.swing.JButton();
-		jButton2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("entrou");
-				int bloqueadoMemoria;
-				int bloqueadoProcessador;
-				int quantidadeMemo;
-				int quantidadeCpu;
-				
-				bloqueadoMemoria = Integer.parseInt(bloqueadosMemoria.getText());
-				bloqueadoProcessador = Integer.parseInt(bloqueadosCPU.getText());
-				quantidadeMemo = Integer.parseInt(quantidadeMemoria.getText());
-				quantidadeCpu = Integer.parseInt(quantidadeProcessador.getText());
-				
-				quantidadeProcessador.setText(quantidadeCpu-bloqueadoProcessador+"");
-				quantidadeMemoria.setText(quantidadeMemo-bloqueadoMemoria+"");
-				
-				pw.println(nome + " " + "-" + bloqueadosMemoria.getText() + " " + "-" + bloqueadosCPU.getText());
 
-				pw.flush();
-				
-				
-				
-			}
-		});
-	
-		
 		jPanel3 = new javax.swing.JPanel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
@@ -243,11 +218,15 @@ public class Cliente extends JFrame {
 		jLabel6.setText("Memoria");
 
 		jButton2.setText("Bloquear");
-		
-		
+
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
+			}
+		});
+		jButton2.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton2ActionPerformed(evt);
 			}
 		});
 
@@ -264,8 +243,8 @@ public class Cliente extends JFrame {
 										.addGap(18, 18, 18)
 										.addGroup(jPanel1Layout
 												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(bloqueadosMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 65,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(bloqueadosMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
+														65, javax.swing.GroupLayout.PREFERRED_SIZE)
 												.addComponent(jLabel6)))
 								.addGroup(jPanel1Layout.createSequentialGroup().addGap(81, 81, 81)
 										.addComponent(jButton2)))
@@ -300,18 +279,20 @@ public class Cliente extends JFrame {
 								.addComponent(jLabel3).addComponent(jLabel4))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-								.addComponent(totalMemoria)
-								.addComponent(totalProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+								.addComponent(totalMemoria).addComponent(totalProcessador,
+										javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
 						.addContainerGap(120, Short.MAX_VALUE)));
 		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel3Layout.createSequentialGroup().addGap(52, 52, 52)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(jLabel3).addComponent(totalMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel3)
+								.addComponent(totalMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(37, 37, 37)
 						.addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel4).addComponent(totalProcessador, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addComponent(jLabel4).addComponent(totalProcessador,
+										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addContainerGap(111, Short.MAX_VALUE)));
 
 		getContentPane().add(jPanel3);
@@ -376,12 +357,14 @@ public class Cliente extends JFrame {
 		jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel4Layout.createSequentialGroup().addGap(61, 61, 61)
 						.addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel1).addComponent(quantidadeMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
+								.addComponent(jLabel1)
+								.addComponent(quantidadeMemoria, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(34, 34, 34)
 						.addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel2).addComponent(quantidadeProcessador, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addComponent(jLabel2).addComponent(quantidadeProcessador,
+										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
 						.addGap(38, 38, 38).addComponent(jButton1).addContainerGap(44, Short.MAX_VALUE)));
 
 		getContentPane().add(jPanel4);
@@ -458,7 +441,8 @@ public class Cliente extends JFrame {
 		 * .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment
 		 * .LEADING)
 		 * 
-		 * .addComponent(quantidadeProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 84,
+		 * .addComponent(quantidadeProcessador, javax.swing.GroupLayout.PREFERRED_SIZE,
+		 * 84,
 		 * 
 		 * javax.swing.GroupLayout.PREFERRED_SIZE)
 		 * 
