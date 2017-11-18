@@ -49,6 +49,9 @@ public class Cliente extends JFrame {
 	ArrayList<String> lista = new ArrayList<>();
 	private int qtProcessador;
 	private int qtMemoria;
+	private int blockProcessador;
+	private int blockMemoria;
+	private String status;
 	// private ArrayList<String> Idcliente = new ArrayList<>();
 
 	private class ouvirServer implements Runnable {
@@ -62,19 +65,39 @@ public class Cliente extends JFrame {
 				String text;
 
 				while ((text = scan.nextLine()) != null) {
-					int aux= qtMemoria,aux2=qtProcessador;
-					System.out.println(text);
-					
+
 					String[] msgPartida = text.split(" ");
 					lista.add(text);
+					
+					
+					status = msgPartida[0];
+					if(status.equals("enviado")) {
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
-					if(aux<qtMemoria && aux2<qtProcessador) {
-						totalMemoria.setText(qtMemoria + "");
-						totalProcessador.setText(qtProcessador + "");	
+					
+					totalMemoria.setText(qtMemoria + "");
+					totalProcessador.setText(qtProcessador + "");
+					}else {
+						if(status.equals("bloqueado")) {
+							
+							qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
+							qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
+							
+							blockMemoria =( blockMemoria + Integer.parseInt(msgPartida[1]) *-1);
+							blockProcessador = (blockProcessador + Integer.parseInt(msgPartida[2])*-1);
+							
+							
+							System.out.println(qtMemoria+"");
+							
+							totalMemoria.setText(qtMemoria + "");
+							totalProcessador.setText(qtProcessador + "");
+							
+							// problema
+							
+							recebidosMemoria.setText(blockMemoria + "");
+							recebidosCPU.setText(blockProcessador + "");
+						}
 					}
-					
-					
 
 				}
 
@@ -100,7 +123,7 @@ public class Cliente extends JFrame {
 					System.exit(1);
 				}
 				pw.println(
-						nome + " " + "-" + quantidadeMemoria.getText() + " " + "-" + quantidadeProcessador.getText());
+						"enviado" + " " + "-" + quantidadeMemoria.getText() + " " + "-" + quantidadeProcessador.getText());
 
 				pw.flush();
 
@@ -138,17 +161,31 @@ public class Cliente extends JFrame {
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+		if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "CAMPO OBRIGATORIO");
+		} else {
 
-		pw.println(nome + " " + quantidadeMemoria.getText() + " " + quantidadeProcessador.getText());
+			if (quantidadeMemoria.getText() != "" && quantidadeProcessador.getText().equals("")) {
+				quantidadeProcessador.setText("0");
+
+			} else {
+				if (quantidadeMemoria.getText().equals("") && quantidadeProcessador.getText() != "") {
+					quantidadeMemoria.setText("0");
+				}
+
+			}
+		pw.println("enviado" + " " + quantidadeMemoria.getText() + " " + quantidadeProcessador.getText());
 		pw.flush();
 
-		quantidadeMemoria.setEnabled(false);
-		quantidadeProcessador.setEnabled(false);
+		
 
 		quantidadeMemoria.requestFocus();
 
 		quantidadeProcessador.requestFocus();
-
+		
+		jButton1.setEnabled(false);
+		jButton2.setEnabled(true);
+		}
 	}
 
 	/*
@@ -159,24 +196,41 @@ public class Cliente extends JFrame {
 	 */
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-		System.out.println("entrou");
-		int bloqueadoMemoria;
-		int bloqueadoProcessador;
-		int quantidadeMemo;
-		int quantidadeCpu;
 
-		bloqueadoMemoria = Integer.parseInt(bloqueadosMemoria.getText());
-		bloqueadoProcessador = Integer.parseInt(bloqueadosCPU.getText());
-		quantidadeMemo = Integer.parseInt(quantidadeMemoria.getText());
-		quantidadeCpu = Integer.parseInt(quantidadeProcessador.getText());
+		if (bloqueadosMemoria.getText().equals("") && bloqueadosCPU.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "CAMPO OBRIGATORIO");
+		} else {
 
-		quantidadeProcessador.setText(quantidadeCpu - bloqueadoProcessador + "");
-		quantidadeMemoria.setText(quantidadeMemo - bloqueadoMemoria + "");
+			if (bloqueadosMemoria.getText() != "" && bloqueadosCPU.getText().equals("")) {
+				bloqueadosCPU.setText("0");
 
-		pw.println(nome + " " + "-" + bloqueadosMemoria.getText() + " " + "-" + bloqueadosCPU.getText());
+			} else {
+				if (bloqueadosMemoria.getText().equals("") && bloqueadosCPU.getText() != "") {
+					bloqueadosMemoria.setText("0");
+				}
 
-		pw.flush();
+			}
+			int bloqueadoMemoria;
+			int bloqueadoProcessador;
+			int quantidadeMemo;
+			int quantidadeCpu;
 
+			bloqueadoMemoria = Integer.parseInt(bloqueadosMemoria.getText());
+			bloqueadoProcessador = Integer.parseInt(bloqueadosCPU.getText());
+			quantidadeMemo = Integer.parseInt(quantidadeMemoria.getText());
+			quantidadeCpu = Integer.parseInt(quantidadeProcessador.getText());
+
+			quantidadeProcessador.setText(quantidadeCpu - bloqueadoProcessador + "");
+			quantidadeMemoria.setText(quantidadeMemo - bloqueadoMemoria + "");
+
+			pw.println("bloqueado" + " " + "-" + bloqueadosMemoria.getText() + " " + "-" + bloqueadosCPU.getText());
+
+			
+
+			pw.flush();
+			jButton2.setEnabled(false);
+		}
+		
 	}
 
 	private void initComponents() {
@@ -187,7 +241,7 @@ public class Cliente extends JFrame {
 		jLabel6 = new javax.swing.JLabel();
 		bloqueadosMemoria = new javax.swing.JTextField();
 		jButton2 = new javax.swing.JButton();
-
+		jButton2.setEnabled(false);
 		jPanel3 = new javax.swing.JPanel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
@@ -370,6 +424,7 @@ public class Cliente extends JFrame {
 		getContentPane().add(jPanel4);
 
 		pack();
+		setLocationRelativeTo( null );
 		/*
 		 * jPanel1 = new javax.swing.JPanel();
 		 * 

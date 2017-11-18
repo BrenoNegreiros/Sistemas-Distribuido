@@ -36,8 +36,11 @@ public class Server extends JFrame {
 	private javax.swing.JTextField jTextField7;
 	private javax.swing.JTextField jTextField8;
 	ArrayList<String> lista = new ArrayList<>();
+	private int blockProcessador;
+	private int blockMemoria;
 	private int qtProcessador;
 	private int qtMemoria;
+	private String status;
 
 	public Server() {
 		initComponents();
@@ -293,15 +296,36 @@ public class Server extends JFrame {
 				String text;
 
 				while ((text = scan.nextLine()) != null) {
+				
 					String[] msgPartida = text.split(" ");
 					lista.add(text);
+					
+					status = msgPartida[0];
+					if(status.equals("enviado")) {
 					qtMemoria = qtMemoria + Integer.parseInt(msgPartida[1]);
 					qtProcessador = qtProcessador + Integer.parseInt(msgPartida[2]);
-
+					
+					
 					totalMemoria.setText(qtMemoria + "");
 					totalProcessador.setText(qtProcessador + "");
-					
+					System.err.println("enviado" + text);
 					mandarTodos(text);
+					}else {
+						if(status.equals("bloqueado")) {
+							blockMemoria = blockMemoria + Integer.parseInt(msgPartida[1]);
+							blockProcessador = blockProcessador + Integer.parseInt(msgPartida[2]);
+							
+							
+							jTextField8.setText(blockMemoria + "");
+							jTextField7.setText(blockProcessador + "");
+							System.err.println("bloqueado" + text);
+							mandarTodos(text);
+							
+							
+							
+							
+						}
+					}
 
 				}
 			} catch (Exception e) {
