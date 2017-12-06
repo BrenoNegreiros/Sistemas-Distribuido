@@ -24,7 +24,6 @@ public class Cliente extends JFrame {
 	String nome;
 
 	Scanner scan;
-	JButton BotaoCompartilharCPUeMemoria = new JButton("Compartilhar");
 	
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton2;
@@ -91,8 +90,8 @@ public class Cliente extends JFrame {
 							
 							System.out.println(qtMemoria+"");
 							
-							totalMemoria.setText(qtMemoria + "");
-							totalProcessador.setText(qtProcessador + "");
+//							totalMemoria.setText(qtMemoria + "");
+//							totalProcessador.setText(qtProcessador + "");
 							
 							// problema
 							
@@ -189,10 +188,6 @@ public class Cliente extends JFrame {
 		jButton2.setEnabled(true);
 		}
 	}
-
-	private void BotaoCompartilharCPUeMemoria(java.awt.event.ActionEvent evt) {
-		System.out.println("teste");
-	}
 	/*
 	 * 
 	 * Bloquear Action em baixo!!!!!!!!!!!!!!!!!!!!
@@ -278,12 +273,6 @@ public class Cliente extends JFrame {
 		jLabel6.setText("Memoria");
 
 		jButton2.setText("Bloquear");
-		
-		BotaoCompartilharCPUeMemoria.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				BotaoCompartilharCPUeMemoria(evt);
-			}
-		});
 		
 		
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -378,19 +367,14 @@ public class Cliente extends JFrame {
 		jPanel2Layout.setHorizontalGroup(
 			jPanel2Layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(jPanel2Layout.createSequentialGroup()
+					.addGap(42)
 					.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(jPanel2Layout.createSequentialGroup()
-							.addGap(42)
-							.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
-								.addComponent(jLabel9)
-								.addComponent(recebidosCPU, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
-							.addGap(41)
-							.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
-								.addComponent(jLabel10)
-								.addComponent(recebidosMemoria, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(jPanel2Layout.createSequentialGroup()
-							.addGap(93)
-							.addComponent(BotaoCompartilharCPUeMemoria)))
+						.addComponent(jLabel9)
+						.addComponent(recebidosCPU, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
+					.addGap(41)
+					.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
+						.addComponent(jLabel10)
+						.addComponent(recebidosMemoria, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(109, Short.MAX_VALUE))
 		);
 		jPanel2Layout.setVerticalGroup(
@@ -402,11 +386,9 @@ public class Cliente extends JFrame {
 						.addComponent(jLabel10))
 					.addGap(18)
 					.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(recebidosCPU)
-						.addComponent(recebidosMemoria))
-					.addGap(37)
-					.addComponent(BotaoCompartilharCPUeMemoria)
-					.addContainerGap(40, Short.MAX_VALUE))
+						.addComponent(recebidosCPU, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(recebidosMemoria, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(100, Short.MAX_VALUE))
 		);
 		jPanel2.setLayout(jPanel2Layout);
 
